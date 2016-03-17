@@ -13,7 +13,7 @@ class Graph {
 	LinkedList<Edge> edges = new LinkedList<Edge>();
 	LinkedList<Node> nodeList = new LinkedList<Node>();
 	
-	
+	int nodesProcessedDijkstra = 0;
 	
 	
 	
@@ -62,13 +62,23 @@ class Graph {
 	}
 	
 	
-	void generateLargeGraph( int numberOfEdges ) {
+	void generateLargeGraph( int numberOfEdges, int RANGE ) {
 		Random rand = new Random();
 		
 		for ( int i = 0; i < numberOfEdges; i++ ) {
-			this.createDoubleEdge(Integer.toString(i), Integer.toString(i+1), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(30));
+			this.createDoubleEdge(Integer.toString(rand.nextInt(RANGE)), Integer.toString(rand.nextInt(RANGE)), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(30));
 		}
 		
+	}
+	
+	void drawPath( PApplet parent, LinkedList<Edge> path ){
+		for ( Edge edge : path ) {
+			parent.stroke(100, 0, 0);
+			parent.fill(100,0,0);
+			parent.ellipse(edge.fromNode.x, edge.fromNode.y, 10, 10);
+			parent.ellipse(edge.toNode.x, edge.toNode.y, 10, 10);
+			parent.line( edge.fromNode.x, edge.fromNode.y, edge.toNode.x, edge.toNode.y);
+		}
 	}
 	
 	
@@ -95,6 +105,7 @@ class Graph {
 			LinkedList<Edge> connections = getNeighbors( current.node );
 			
 			for ( Edge connection : connections) {
+				nodesProcessedDijkstra++;
 				Node endNode = connection.toNode;
 				int endNodeCost = current.costSoFar + connection.weight;
 				
@@ -130,10 +141,13 @@ class Graph {
 		}
 		path = reverse(path);
 		
+		return path;
+	}
+	
+	
+	void printPath( LinkedList<Edge> path ) {
 		for( Edge edge : path )
 			System.out.println( "From: " + edge.fromNode.name + "  To: " +  edge.toNode.name );
-		
-		return path;
 	}
 	
 	LinkedList<Edge> reverse( LinkedList<Edge> path) {
@@ -258,11 +272,11 @@ class Graph {
 
 	public void drawGraph(PApplet parent) {
 		for ( Edge edge : edges ) {
-			parent.fill(0);
+			parent.stroke(0);
 			parent.line( edge.toNode.x, edge.toNode.y, edge.fromNode.x, edge.fromNode.y );
 		}
 		for ( Node node : nodeList ){
-			parent.fill(150);
+			parent.fill(0);
 			parent.ellipse(node.x, node.y, 10, 10);
 		}
 	}
