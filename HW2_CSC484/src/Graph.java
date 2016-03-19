@@ -13,7 +13,7 @@ class Graph {
 	LinkedList<Edge> edges = new LinkedList<Edge>();
 	LinkedList<Node> nodeList = new LinkedList<Node>();
 	
-	int nodesProcessedDijkstra = 0;
+	int nodesProcessed = 0;
 	
 	
 	
@@ -105,7 +105,7 @@ class Graph {
 			LinkedList<Edge> connections = getNeighbors( current.node );
 			
 			for ( Edge connection : connections) {
-				nodesProcessedDijkstra++;
+				nodesProcessed++;
 				Node endNode = connection.toNode;
 				int endNodeCost = current.costSoFar + connection.weight;
 				
@@ -143,6 +143,95 @@ class Graph {
 		
 		return path;
 	}
+	
+	class Heuristic {
+		Node goal;
+
+		Heuristic( Node goal ) {
+			this.goal = goal;
+		}
+		int constantEstimate( Node node ) {
+			return 5;
+		}
+		int euclidianDistance( Node node ) {
+			//Euclidian
+			//return (int)Math.sqrt( Math.pow(goal.x - node.x, 2) + Math.pow(goal.y - node.y, 2) );
+			//Constant
+			return 1;
+		}
+	}
+	
+	LinkedList<Edge> Astar( Node start, Node goal ) {
+		NodeRecord startRecord = new NodeRecord();
+		NodeRecord endNodeRecord;
+		NodeRecord current = new NodeRecord();
+		LinkedList<Edge> path = new LinkedList<Edge>();
+		Heuristic heuristic = new Heuristic( goal );
+		int endNodeHeuristic = 0;
+		startRecord.node = start;
+		startRecord.connection = null;
+		startRecord.costSoFar = 0;
+		startRecord.estimatedTotalCost = heuristic.euclidianDistance(start);
+		
+		PathfindingList openList = new PathfindingList();
+		openList.add( startRecord );
+		PathfindingList closedList = new PathfindingList();
+		
+		while ( openList.list.size() > 0 ) {
+			current = openList.smallestElement();
+			
+			if ( current.node.equals( goal ) )
+				break;
+			
+			LinkedList<Edge> connections = getNeighbors( current.node );
+			
+			for ( Edge connection : connections) {
+				nodesProcessed++;
+				Node endNode = connection.toNode;
+				int endNodeCost = current.costSoFar + connection.weight;
+				
+				if ( closedList.contains( endNode ) ){
+					endNodeRecord = closedList.find(endNode);
+					if(endNodeRecord.costSoFar <= endNodeCost)
+						continue;
+					closedList.remove(endNodeRecord);
+					endNodeHeuristic = endNodeRecord.cost - endNodeRecord.costSoFar;
+				}else if ( openList.contains( endNode ) ){
+					endNodeRecord = openList.find( endNode );
+					if ( endNodeRecord.costSoFar <= endNodeCost )
+						continue;
+					endNodeHeuristic = endNodeRecord.cost - endNodeRecord.costSoFar;
+				}else{
+					endNodeRecord = new NodeRecord();
+					endNodeRecord.node = endNode;
+					endNodeHeuristic = heuristic.euclidianDistance(endNode);
+				}
+				
+				endNodeRecord.costSoFar = endNodeCost;
+				endNodeRecord.connection = connection;
+				endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic;
+				
+				if ( !openList.contains( endNode ) )
+					openList.add( endNodeRecord );
+			}
+			openList.remove( current );
+			closedList.add( current );
+		}
+		
+		if ( !current.node.equals( goal ) )
+			System.out.println("No sol'n :( sorry ");
+		else{
+			while ( !current.node.equals( start ) ){
+				path.add(current.connection);
+
+				current = closedList.find( current.connection.fromNode );
+			}
+		}
+		path = reverse(path);
+		
+		return path;
+	}
+	
 	
 	
 	void printPath( LinkedList<Edge> path ) {
@@ -206,8 +295,11 @@ class Graph {
 	class NodeRecord{
 		Node node;
 		Edge connection;
+		int cost = 0;
 		int costSoFar = Integer.MAX_VALUE;
+		int estimatedTotalCost = 0;		
 	}	
+
 
 	
 	LinkedList<Edge> getNeighbors( Node node ){
@@ -252,6 +344,7 @@ class Graph {
 			}
 			return smallest;
 		}
+
 		
 		boolean contains( Node node ) {
 			for( NodeRecord nodeRecord : list ) {
