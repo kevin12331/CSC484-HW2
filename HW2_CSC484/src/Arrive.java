@@ -1,3 +1,4 @@
+
 import processing.core.*;
 
 public class Arrive {
@@ -6,10 +7,10 @@ public class Arrive {
 	public static Steering arrive( Character agent, Character target ){
 		
 		Steering steering = new Steering();
-		float radiusOfSatisfaction = 30;
-		float radiusOfDeceleration = 200;
+		float radiusOfSatisfaction = 10;
+		float radiusOfDeceleration = 30;
 		float targetSpeed = 0;
-		float timeToTarget = 40;
+		float timeToTarget = 15;
 		float maxSpeed = agent.getMaxSpeed();
 		float maxAcceleration = (float) 1;
 
@@ -19,6 +20,7 @@ public class Arrive {
 		
 		if (distance < radiusOfSatisfaction ){
 			targetVelocity.mult(-1);
+			agent.velocity.mult(0);
 
 		}
 		

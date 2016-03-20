@@ -12,9 +12,10 @@ class Graph {
 	Hashtable<String, Node> nodes = new Hashtable<String, Node>();
 	LinkedList<Edge> edges = new LinkedList<Edge>();
 	LinkedList<Node> nodeList = new LinkedList<Node>();
-	
+	Random rand = new Random();
+
 	int nodesProcessed = 0;
-	
+	int part4RANGE = 5;
 	
 	
 	//Generate whatever you want here
@@ -68,12 +69,194 @@ class Graph {
 		for ( int i = 0; i < numberOfEdges; i++ ) {
 			this.createDoubleEdge(Integer.toString(rand.nextInt(RANGE)), Integer.toString(rand.nextInt(RANGE)), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(800), rand.nextInt(30));
 		}
+
+	}
+	
+	void generatePart4Graph() {
+		this.createDoubleEdge("a", "b", 40, 40, 112, 40, 5);
+		this.createDoubleEdge("b", "c", 40, 40, 45, 174, 5);
+		this.createDoubleEdge("c", "d", 40, 40, 183, 179, 5);
+		this.createDoubleEdge("b", "d", 40, 40, 112, 40, 5);
+		this.createDoubleEdge("a", "c", 40, 40, 112, 40, 5);
+		this.createDoubleEdge("a", "d", 40, 40, 112, 40, 5);
+		this.createDoubleEdge("b", "f", 40, 40, 406, 46, 5);
+		this.createDoubleEdge("b", "e", 40, 40, 270, 108, 5);
+		this.createDoubleEdge("d", "e", 40, 40, 270, 108, 5);
+		this.createDoubleEdge("d", "g", 40, 40, 400, 170, 5);
+		this.createDoubleEdge("f", "g", 40, 40, 400, 170, 5);
+		this.createDoubleEdge("e", "f", 40, 40, 400, 170, 5);
+		this.createDoubleEdge("e", "g", 40, 40, 400, 170, 5);
+		this.createDoubleEdge("g", "h", 40, 40, 552, 108, 5);
+		this.createDoubleEdge("f", "h", 40, 40, 552, 108, 5);
+		this.createDoubleEdge("h", "i", 40, 40, 625, 50, 5);
+		this.createDoubleEdge("h", "k", 40, 40, 625, 157, 5);
+		this.createDoubleEdge("i", "k", 40, 40, 625, 157, 5);
+		this.createDoubleEdge("i", "j", 40, 40, 735, 50, 5);
+		this.createDoubleEdge("j", "l", 40, 40, 735, 157, 5);
+		this.createDoubleEdge("k", "l", 40, 40, 735,7, 5);
+		this.createDoubleEdge("k", "j", 40, 40, 735, 7, 5);
+		this.createDoubleEdge("f", "i", 40, 40, 735, 7, 5);
+		this.createDoubleEdge("g", "k", 40, 40, 735, 7, 5);
+		
+		this.createDoubleEdge("g", "m", 40, 40, 451, 219, 5);
+		this.createDoubleEdge("h", "m", 40, 40, 451, 219, 5);
+		this.createDoubleEdge("f", "m", 40, 40, 451, 219, 5);
+		this.createDoubleEdge("f", "n", 40, 40, 596, 229, 5);
+		this.createDoubleEdge("m", "n", 40, 40, 596, 229, 5);
+		this.createDoubleEdge("k", "n", 40, 40, 596, 229, 5);
+		this.createDoubleEdge("l", "n", 40, 40, 596, 229, 5);
+		this.createDoubleEdge("g", "n", 40, 40, 596, 229, 5);
+		this.createDoubleEdge("o", "n", 730, 241, 596, 229, 5);
+		this.createDoubleEdge("o", "l", 730, 241, 596, 229, 5);
+		this.createDoubleEdge("o", "i", 730, 241, 596, 229, 5);;
+		this.createDoubleEdge("o", "k", 730, 241, 596, 229, 5);
+		this.createDoubleEdge("c", "e", 730, 241, 596, 229, 5);
+		this.createDoubleEdge("e", "h", 730, 241, 596, 229, 5);
+		this.createDoubleEdge("h", "n", 730, 241, 596, 229, 5);
+		
+		this.createDoubleEdge("p", "m", 452, 364, 596, 229, 5);
+		this.createDoubleEdge("n", "p", 452, 364, 596, 229, 5);
+		this.createDoubleEdge("p", "o", 452, 364, 596, 229, 5);
+		this.createDoubleEdge("p", "q", 452, 364, 598, 381, 5);
+		this.createDoubleEdge("m", "q", 452, 364, 598, 381, 5);
+		this.createDoubleEdge("n", "q", 452, 364, 598, 381, 5);
+		this.createDoubleEdge("o", "q", 452, 364, 598, 381, 5);
+		this.createDoubleEdge("q", "r", 452, 364, 735, 385, 5);
+		this.createDoubleEdge("r", "n", 452, 364, 735, 385, 5);
+		this.createDoubleEdge("o", "r", 452, 364, 735, 385, 5);
+		
+		this.createDoubleEdge("r", "s", 452, 364, 448, 538, 5);
+		this.createDoubleEdge("p", "s", 452, 364, 448, 538, 5);
+		this.createDoubleEdge("q", "s", 452, 364, 448, 538, 5);
+		this.createDoubleEdge("j", "s", 452, 364, 448, 538, 5);
+		this.createDoubleEdge("n", "s", 452, 364, 448, 538, 5);
+		this.createDoubleEdge("s", "t", 452, 364, 592, 550, 5);
+		this.createDoubleEdge("r", "t", 452, 364, 448, 592, 5);
+		this.createDoubleEdge("q", "t", 452, 364, 448, 592, 5);
+		this.createDoubleEdge("p", "t", 452, 364, 448, 592, 5);
+		this.createDoubleEdge("u", "t", 730, 578, 448, 592, 5);
+		this.createDoubleEdge("u", "r", 730, 578, 448, 592, 5);
+		this.createDoubleEdge("u", "p", 730, 578, 448, 592, 5);
+		this.createDoubleEdge("u", "n", 730, 578, 448, 592, 5);
+		this.createDoubleEdge("u", "q", 730, 578, 448, 592, 5);
+		
+		this.createDoubleEdge("s", "z", 730, 578, 564, 649, 5);
+		this.createDoubleEdge("t", "z", 730, 578, 564, 649, 5);
+		this.createDoubleEdge("p", "z", 730, 578, 564, 649, 5);
+		this.createDoubleEdge("q", "z", 730, 578, 564, 649, 5);
+
+		this.createDoubleEdge("a1", "z", 452, 662, 564, 649, 5);
+		this.createDoubleEdge("a1", "s", 452, 662, 564, 649, 5);
+		this.createDoubleEdge("a1", "t", 452, 662, 564, 649, 5);
+		this.createDoubleEdge("a1", "q", 452, 662, 564, 649, 5);
+		
+		this.createDoubleEdge("v", "t", 701, 620, 564, 649, 5);
+		this.createDoubleEdge("v", "u", 701, 620, 564, 649, 5);
+		this.createDoubleEdge("v", "q", 701, 620, 564, 649, 5);
+		this.createDoubleEdge("v", "r", 701, 620, 564, 649, 5);
+		this.createDoubleEdge("v", "w", 701, 640, 671, 710, 5);
+		this.createDoubleEdge("w", "u", 701, 630, 671, 694, 5);
+		
+		this.createDoubleEdge("x", "u", 701, 620, 709, 707, 5);
+		this.createDoubleEdge("x", "v", 701, 620, 709, 707, 5);
+		this.createDoubleEdge("x", "w", 701, 620, 709, 707, 5);
+		this.createDoubleEdge("x", "y", 701, 620, 751, 758, 5);
+		this.createDoubleEdge("u", "y", 701, 620, 751, 758, 5);
+		this.createDoubleEdge("w", "y", 701, 620, 751, 758, 5);
+		
+		this.createDoubleEdge("b1", "y", 591, 740, 751, 758, 5);
+		this.createDoubleEdge("b1", "c1", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("c1", "z", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("c1", "w", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("b1", "w", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("b1", "z", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("d1", "z", 509, 702, 591, 706, 5);
+		this.createDoubleEdge("d1", "a1", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("d1", "c1", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("d1", "b1", 701, 620, 591, 706, 5);
+		this.createDoubleEdge("d1", "i1", 701, 620, 519, 740, 5);
+		this.createDoubleEdge("c1", "i1", 701, 620, 519, 740, 5);
+		this.createDoubleEdge("b1", "i1", 701, 620, 519, 740, 5);
+		this.createDoubleEdge("a1", "i1", 701, 620, 519, 740, 5);
+
+		this.createDoubleEdge("h1", "t", 372, 632, 519, 740, 5);
+		this.createDoubleEdge("h1", "a1", 372, 632, 519, 740, 5);
+		this.createDoubleEdge("h1", "z", 372, 632, 519, 740, 5);
+		this.createDoubleEdge("h1", "j1", 372, 632, 377, 713, 5);
+		this.createDoubleEdge("j1", "a1", 372, 632, 377, 713, 5);
+		this.createDoubleEdge("j1", "s", 372, 632, 377, 713, 5);
+		this.createDoubleEdge("j1", "z", 372, 632, 377, 713, 5);
+		this.createDoubleEdge("j1", "d1", 372, 632, 377, 713, 5);
+		this.createDoubleEdge("j1", "i1", 372, 632, 377, 713, 5);
+
+		this.createDoubleEdge("k1", "i1", 244, 730, 377, 713, 5);
+		this.createDoubleEdge("k1", "j1", 244, 730, 377, 713,5);
+		this.createDoubleEdge("k1", "h1", 244, 730, 377, 713, 5);
+		this.createDoubleEdge("k1", "n1", 244, 730, 218, 674, 5);
+		this.createDoubleEdge("n1", "h1", 244, 730, 218, 674, 5);
+		this.createDoubleEdge("n1", "j1", 244, 730, 218, 674, 5);
+		this.createDoubleEdge("n1", "o1", 244, 730, 77, 640, 5);
+		this.createDoubleEdge("n1", "m1", 244, 730, 56, 742, 5);
+		this.createDoubleEdge("o1", "m1", 244, 730, 56, 742, 5);
+		this.createDoubleEdge("k1", "m1", 244, 730, 56, 742, 5);
+
+		
+		this.createDoubleEdge("p1", "m1", 226, 586, 56, 742, 5);
+		this.createDoubleEdge("p1", "n1", 226, 586, 56, 742,5);
+		this.createDoubleEdge("p1", "o1", 226, 586, 56, 742, 5);
+		this.createDoubleEdge("p1", "h1", 226, 586, 56, 742, 5);
+
+		this.createDoubleEdge("q1", "p1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("q1", "h1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("q1", "n1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("q1", "o1", 326, 476, 56, 742, 5);
+
+		this.createDoubleEdge("r1", "q1", 74, 464, 56, 742, 5);
+		this.createDoubleEdge("r1", "p1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("r1", "o1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("r1", "n1", 326, 476, 56, 742, 5);
+
+		this.createDoubleEdge("s1", "r1", 252, 372, 56, 742, 5);
+		this.createDoubleEdge("s1", "q1", 326, 476, 56, 742, 5);
+		this.createDoubleEdge("s1", "u1", 326, 476, 90, 313, 5);
+		this.createDoubleEdge("s1", "t1", 326, 476, 342, 337, 5);
+		this.createDoubleEdge("q1", "t1", 326, 476, 342, 337, 5);
+		this.createDoubleEdge("h1", "t1", 326, 476, 342, 337, 5);
+		this.createDoubleEdge("u1", "r1", 326, 476, 342, 337, 5);
+		this.createDoubleEdge("u1", "t1", 326, 476, 342, 337, 5);
+
+		
+		this.createDoubleEdge("z1", "t1", 244, 281, 342, 337, 5);
+		this.createDoubleEdge("z1", "s1", 244, 281, 342, 337, 5);
+		this.createDoubleEdge("z1", "u1", 244, 281, 342, 337, 5);
+		
+		this.createDoubleEdge("v1", "t1", 345, 261, 342, 337, 5);
+		this.createDoubleEdge("v1", "z1", 244, 281, 342, 337, 5);
+		this.createDoubleEdge("v1", "s1", 244, 281, 342, 337, 5);
+
+		this.createDoubleEdge("v1", "w1", 244, 281, 324, 174, 5);
+		this.createDoubleEdge("w1", "d", 244, 281, 324, 174, 5);
+		this.createDoubleEdge("w1", "g", 244, 281, 324, 174, 5);
+		this.createDoubleEdge("w1", "b", 244, 281, 324, 174, 5);
+
+		this.createDoubleEdge("x1", "z1", 171, 265, 324, 174, 5);
+		this.createDoubleEdge("x1", "d", 171, 237, 324, 174, 5);
+		this.createDoubleEdge("x1", "c", 171, 237, 324, 174, 5);
+		this.createDoubleEdge("u1", "c", 171, 237, 324, 174, 5);
+		this.createDoubleEdge("u1", "x1", 171, 237, 324, 174, 5);
+		
+		this.createDoubleEdge("c", "p1", 171, 237, 324, 174, 5);
+		this.createDoubleEdge("c", "h1", 171, 237, 324, 174, 5);
+		this.createDoubleEdge("a", "n", 171, 237, 324, 174, 5);
+
+
+
 		
 	}
 	
 	void drawPath( PApplet parent, LinkedList<Edge> path ){
 		for ( Edge edge : path ) {
-			parent.stroke(100, 0, 0);
+			parent.stroke(255, 0, 0);
 			parent.fill(100,0,0);
 			parent.ellipse(edge.fromNode.x, edge.fromNode.y, 10, 10);
 			parent.ellipse(edge.toNode.x, edge.toNode.y, 10, 10);
@@ -155,9 +338,9 @@ class Graph {
 		}
 		int euclidianDistance( Node node ) {
 			//Euclidian
-			//return (int)Math.sqrt( Math.pow(goal.x - node.x, 2) + Math.pow(goal.y - node.y, 2) );
+			return (int)Math.sqrt( Math.pow(goal.x - node.x, 2) + Math.pow(goal.y - node.y, 2) );
 			//Constant
-			return 1;
+			//return 1;
 		}
 	}
 	
@@ -318,7 +501,7 @@ class Graph {
 		}
 	}
 	
-	class Edge {
+	static class Edge {
 		Node toNode, fromNode;
 		int weight;
 	}

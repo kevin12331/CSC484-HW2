@@ -19,11 +19,12 @@ public class Map {
 		obstacles.add(parent.createShape(PConstants.RECT, -1, -1 , 20, parent.height + 1));
 		obstacles.add(parent.createShape(PConstants.RECT, parent.width-20, -1 , 20, parent.height + 1));
 		
-		//Middle top
-		obstacles.add(parent.createShape(PConstants.RECT, parent.width/2, 0 , 10, parent.height/3 + 25));
+		//obstacles
+		obstacles.add(parent.createShape(PConstants.RECT, parent.width/2, 200 , 10, 400));
+		obstacles.add(parent.createShape(PConstants.RECT, 200, 200 , 90, 50));
+		obstacles.add(parent.createShape(PConstants.RECT, 600, 600 , 50, 90));
 
-		//Middle bottom
-		obstacles.add(parent.createShape(PConstants.RECT, parent.width/2, parent.height , 10, -parent.height/3 - 25));
+
 		
 		for ( PShape shape : obstacles )
 			parent.shape( shape );
